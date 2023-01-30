@@ -24,7 +24,7 @@ const Home = () => {
     <Box sx={styles.container}>
       <Box textAlign="center">
         <Box>
-          <img src="/assets/images/logo.png" width={300} />
+          <img src="/assets/images/logo.png" width={300} alt="logo" />
         </Box>
         <Typography
           color="white"

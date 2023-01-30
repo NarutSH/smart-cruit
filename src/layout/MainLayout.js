@@ -16,7 +16,6 @@ import Button from "@mui/material/Button";
 import { Outlet, useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
-const navItems = ["Home", "About", "Contact"];
 const menuItems = [
   {
     label: "HOME",

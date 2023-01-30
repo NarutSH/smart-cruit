@@ -1,4 +1,4 @@
-import { Box, Container, Paper } from "@mui/material";
+import { Container, Paper } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { getResumeList } from "../api/smartcruitAPI";
 import TableComp from "../components/TableComp";
