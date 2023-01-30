@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  ColumnDef,
   flexRender,
   getCoreRowModel,
   getSortedRowModel,
@@ -52,27 +51,27 @@ const TableComp = ({ data, columns }) => {
     </Box>
   );
 
-  const displaylimitResults = (
-    <Box display="flex" alignItems="center">
-      <span>แสดง</span>
-      <select
-        onChange={(e) => {
-          table.setPageSize(Number(e.target.value));
-        }}
-        value={table.getState().pagination.pageSize}
-        className="mx-2 form-select"
-        style={{ width: "fit-content" }}
-      >
-        <option value={10}>10</option>
-        <option value={20}>20</option>
-        <option value={30}>30</option>
-        <option value={40}>40</option>
-        <option value={50}>50</option>
-      </select>
+  //   const displaylimitResults = (
+  //     <Box display="flex" alignItems="center">
+  //       <span>แสดง</span>
+  //       <select
+  //         onChange={(e) => {
+  //           table.setPageSize(Number(e.target.value));
+  //         }}
+  //         value={table.getState().pagination.pageSize}
+  //         className="mx-2 form-select"
+  //         style={{ width: "fit-content" }}
+  //       >
+  //         <option value={10}>10</option>
+  //         <option value={20}>20</option>
+  //         <option value={30}>30</option>
+  //         <option value={40}>40</option>
+  //         <option value={50}>50</option>
+  //       </select>
 
-      <span>แถว</span>
-    </Box>
-  );
+  //       <span>แถว</span>
+  //     </Box>
+  //   );
 
   return (
     <div>
