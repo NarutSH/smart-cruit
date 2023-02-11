@@ -7,8 +7,6 @@ import VerticalLinearStepper from "../components/VerticalLinearStepper";
 
 const ResumeForm = () => {
   const hookForm = useForm();
-  const { watch } = hookForm;
-  const watchValue = watch();
 
   return (
     <Box>
