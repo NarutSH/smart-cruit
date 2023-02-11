@@ -10,8 +10,6 @@ const ResumeForm = () => {
   const { watch } = hookForm;
   const watchValue = watch();
 
-  console.log({ watchValue });
-
   return (
     <Box>
       <Grid container>

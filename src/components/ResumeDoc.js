@@ -1,5 +1,5 @@
 import React from "react";
-import {
+import ReactPDF, {
   Document,
   Page,
   Text,
@@ -75,7 +75,9 @@ const MyDocument = ({ data }) => {
         <View>
           <RowText
             label="Fullname"
-            value={`${data?.contact?.firstName} ${data?.contact?.lastName}`}
+            value={`${data?.contact?.firstName ?? ""} ${
+              data?.contact?.lastName ?? ""
+            }`}
           />
           <RowText
             label="Date of birth"
@@ -91,7 +93,7 @@ const MyDocument = ({ data }) => {
 
         <View>
           <Image
-            src={data?.contact?.profileImg}
+            src={data?.contact?.profileImg ?? "/assets/images/user.jpeg"}
             style={{
               width: "200px",
             }}
