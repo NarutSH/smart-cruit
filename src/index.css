@@ -1,3 +1,7 @@
+body {
+  min-height: 100vh;
+}
+
 .presentation-text {
   color: #ffffff;
   background: linear-gradient(to bottom, #ffffff 35%, #4e6773 100%);
@@ -34,4 +38,8 @@ td {
   padding: 8px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+}
+
+input[type="file"] {
+  display: none;
 }

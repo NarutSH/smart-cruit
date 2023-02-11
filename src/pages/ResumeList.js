@@ -1,9 +1,11 @@
-import { Container, Paper } from "@mui/material";
+import { Box, Button, Container, Paper, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getResumeList } from "../api/smartcruitAPI";
 import TableComp from "../components/TableComp";
 
 const ResumeList = () => {
+  const navigate = useNavigate();
   const [tableData, setTableData] = useState([]);
 
   const tableColumn = [
@@ -65,6 +67,10 @@ const ResumeList = () => {
     },
   ];
 
+  const onHandleCreateClick = () => {
+    navigate("/resume-form");
+  };
+
   const getTableData = () => {
     getResumeList()
       .then((res) => {
@@ -93,7 +99,18 @@ const ResumeList = () => {
   }, []);
 
   return (
-    <Container maxWidth>
+    <Container maxWidth sx={{ paddingBlock: "20px" }}>
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        my={2}
+      >
+        <TextField />
+        <Button variant="contained" onClick={onHandleCreateClick}>
+          Create Resume
+        </Button>
+      </Box>
       <Paper elevation={3} sx={{ p: 3 }}>
         <TableComp columns={tableColumn} data={tableData} />
       </Paper>
