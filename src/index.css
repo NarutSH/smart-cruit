@@ -1,5 +1,19 @@
+@font-face {
+  font-family: "THSarabunNew";
+  src: url(/public//assets/fonts/THSarabunNew.ttf);
+  /* font-weight: 500; */
+}
+
 body {
+  font-family: "THSarabunNew";
   min-height: 100vh;
+}
+
+.a4 {
+  width: 595px;
+  height: 842px;
+  padding: 10px 25px;
+  margin: 20px auto;
 }
 
 .presentation-text {

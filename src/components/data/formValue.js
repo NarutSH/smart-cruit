@@ -15,6 +15,13 @@ export const formValue = {
     dob: "",
     nationnality: "",
     marital: "",
+    carLicense: "",
+  },
+  career: {
+    careerHighlight: "",
+    location: "",
+    availability: "",
+    areaOfInterest: "",
   },
   experiences: [
     // {

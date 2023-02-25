@@ -9,7 +9,7 @@ import {
   Rating,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { defFormValue } from "../data/formValue";
 import { Controller, useFieldArray } from "react-hook-form";
 
@@ -28,60 +28,34 @@ const LanguageEl = ({ hookForm }) => {
 
   return (
     <React.Fragment>
-      <Typography variant="h6" gutterBottom>
-        ภาษา
-      </Typography>
-      {fields.map((el, index) => {
-        return (
-          <Paper
-            key={el.id}
-            variant="outlined"
-            sx={{ boxShadow: 1, p: 4, my: 2 }}
-          >
-            <Grid container spacing={3}>
-              <Grid item xs={6}>
-                <Typography variant="body">ภาษาที่ {index + 1}</Typography>
-              </Grid>
-              <Grid item xs={6} display="flex" justifyContent="end">
-                <IconButton onClick={() => remove(index)}>
-                  <DeleteIcon color="secondary" />
-                </IconButton>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  label="ภาษา"
-                  fullWidth
-                  style={styles.input}
-                  {...register(`language.${index}.languageName`)}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Controller
-                  name={`language.${index}.languageLevel`}
-                  control={control}
-                  render={({ field: { value, onChange, ref } }) => {
-                    return (
-                      <Rating
-                        ref={ref}
-                        name="simple-controlled"
-                        value={value}
-                        onChange={(_, newValue) => {
-                          onChange(newValue);
-                        }}
-                        size="large"
-                      />
-                    );
-                  }}
-                />
+      <Grid container>
+        {fields.map((el, index) => {
+          return (
+            <Grid item xs={6}>
+              <Grid container spacing={3} my={1} key={el.id}>
+                <Grid item xs={10}>
+                  <TextField
+                    required
+                    label={`ภาษาที่ ${index + 1}`}
+                    fullWidth
+                    style={styles.input}
+                    {...register(`language.${index}.languageName`)}
+                  />
+                </Grid>
+                <Grid item xs={2} display="flex" justifyContent="end">
+                  <IconButton onClick={() => remove(index)}>
+                    <DeleteIcon color="secondary" />
+                  </IconButton>
+                </Grid>
               </Grid>
             </Grid>
-          </Paper>
-        );
-      })}
-
+          );
+        })}
+      </Grid>
       <Button
-        variant="contained"
+        sx={{ marginTop: "10px" }}
+        variant="text"
+        startIcon={<AddCircleOutlineIcon />}
         fullWidth
         onClick={() => append(defFormValue.language)}
       >

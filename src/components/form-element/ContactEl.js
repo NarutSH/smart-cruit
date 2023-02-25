@@ -14,6 +14,7 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { Controller } from "react-hook-form";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import { toBase64 } from "../../services/global-function";
+import { optionCarLicense, optionMarital } from "../../data/data";
 
 const ContactEl = ({ hookForm }) => {
   const [image64, setImage64] = useState("");
@@ -168,8 +169,9 @@ const ContactEl = ({ hookForm }) => {
                     label="Marital Status"
                     {...field}
                   >
-                    <MenuItem value={1}>ผ่านแล้ว</MenuItem>
-                    <MenuItem value={2}>ยังไม่ผ่าน</MenuItem>
+                    {optionMarital.map((el) => {
+                      return <MenuItem value={el.value}>{el.label}</MenuItem>;
+                    })}
                   </Select>
                 </FormControl>
               );
@@ -193,9 +195,9 @@ const ContactEl = ({ hookForm }) => {
                     label="Car License"
                     {...field}
                   >
-                    <MenuItem value={1}>มี</MenuItem>
-                    <MenuItem value={2}>มี, มีรถยนต์ส่วนตัว</MenuItem>
-                    <MenuItem value={3}>ไม่มี</MenuItem>
+                    {optionCarLicense?.map((el) => (
+                      <MenuItem value={el.value}>{el.label}</MenuItem>
+                    ))}
                   </Select>
                 </FormControl>
               );

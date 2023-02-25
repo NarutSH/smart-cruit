@@ -12,6 +12,8 @@ import EducationEl from "./form-element/EducationEl";
 import ExperienceEl from "./form-element/ExperienceEl";
 import Language from "./form-element/Language";
 import AboutEl from "./form-element/AboutEl";
+import CareerHighlight from "./form-element/CareerHighlight";
+import Salary from "./form-element/Salary";
 
 export default function VerticalLinearStepper({ hookForm }) {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -19,21 +21,30 @@ export default function VerticalLinearStepper({ hookForm }) {
   const steps = [
     {
       label: "ข้อมูลส่วนตัว",
-      dataTab: <ContactEl hookForm={hookForm} />,
+      dataTab: (
+        <>
+          <ContactEl hookForm={hookForm} />
+          <Language hookForm={hookForm} />
+        </>
+      ),
+    },
+    {
+      label: "Career Highlight",
+      dataTab: <CareerHighlight hookForm={hookForm} />,
+    },
+    {
+      label: "การศึกษา",
+      dataTab: <EducationEl hookForm={hookForm} />,
     },
     {
       label: "ประสบการณ์",
       dataTab: <ExperienceEl hookForm={hookForm} />,
     },
     {
-      label: "การศึกษา",
-      dataTab: <EducationEl hookForm={hookForm} />,
+      label: "Salary",
+      dataTab: <Salary hookForm={hookForm} />,
     },
 
-    {
-      label: "ภาษา",
-      dataTab: <Language hookForm={hookForm} />,
-    },
     {
       label: "อื่น ๆ",
       dataTab: <AboutEl hookForm={hookForm} />,

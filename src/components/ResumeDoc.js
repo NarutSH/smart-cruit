@@ -135,6 +135,7 @@ const MyDocument = ({ data }) => {
         })}
     </View>
   );
+
   const displayEducation = (
     <View>
       <View style={styles.title}>

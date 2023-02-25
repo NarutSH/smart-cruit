@@ -5,3 +5,9 @@ export const toBase64 = (file) =>
     reader.onload = () => resolve(reader.result);
     reader.onerror = (error) => reject(error);
   });
+
+export const matchOption = (option, value) => {
+  const findData = option.find((el) => el.value == value);
+
+  return findData?.label;
+};
