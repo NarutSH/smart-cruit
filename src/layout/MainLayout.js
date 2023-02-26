@@ -20,7 +20,6 @@ import PermDataSettingIcon from "@mui/icons-material/PermDataSetting";
 import StorageIcon from "@mui/icons-material/Storage";
 import NetworkPingIcon from "@mui/icons-material/NetworkPing";
 import FileCopyIcon from "@mui/icons-material/FileCopy";
-import ArticleIcon from "@mui/icons-material/Article";
 
 const drawerWidth = 240;
 const menuItems = [
@@ -28,37 +27,44 @@ const menuItems = [
     label: "HOME",
     path: "/",
     Icon: HomeIcon,
+    imgPath: "/assets/images/btn/btn-home.png",
   },
   {
     label: "SM CALENDAR",
     path: "/",
     Icon: CalendarMonthIcon,
+    imgPath: "/assets/images/btn/sm-calendar.png",
   },
   {
     label: "PIPELINE",
-    path: "",
+    path: "/",
     Icon: PermDataSettingIcon,
+    imgPath: "/assets/images/btn/btn-pipeline.png",
   },
   {
     label: "JOB DATABASE",
     path: "/",
     Icon: StorageIcon,
+    imgPath: "/assets/images/btn/btn-job-database.png",
   },
   {
     label: "KPI",
     path: "/",
     Icon: NetworkPingIcon,
+    imgPath: "/assets/images/btn/btn-kpi.png",
   },
   {
     label: "Training Technique",
     path: "/",
     Icon: FileCopyIcon,
+    imgPath: "/assets/images/btn/btn-training-technique.png",
   },
-  {
-    label: "MY RESUME",
-    path: "/resume-list",
-    Icon: ArticleIcon,
-  },
+  // {
+  //   label: "MY RESUME",
+  //   path: "/resume-list",
+  //   Icon: ArticleIcon,
+  //   imgPath: "/assets/images/btn/btn-pipeline.png",
+  // },
 ];
 
 function MainLayout(props) {
@@ -88,6 +94,11 @@ function MainLayout(props) {
             </ListItemButton>
           </ListItem>
         ))}
+        <ListItem disablePadding onClick={() => navigate("/resume-list")}>
+          <ListItemButton sx={{ textAlign: "center" }}>
+            <ListItemText primary="MY RESUME" />
+          </ListItemButton>
+        </ListItem>
       </List>
     </Box>
   );
@@ -105,39 +116,47 @@ function MainLayout(props) {
           boxShadow: "none",
         }}
       >
-        <Toolbar>
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
+            sx={{ mr: 2, display: { lg: "none" } }}
           >
             <MenuIcon />
           </IconButton>
-          {/* <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-            onClick={() => navigate("/")}
-          >
-            SMARTCRUIT
-          </Typography> */}
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
+
+          <Box sx={{ display: { xs: "none", lg: "block" } }}>
             {menuItems.map((item, index) => (
-              <Button
+              <img
+                src={item.imgPath}
                 key={index}
-                startIcon={<item.Icon />}
-                sx={{
-                  color: "black",
-                  marginLeft: "5px",
-                  backgroundColor: "white",
+                style={{
+                  margin: "10px",
+                  cursor: "pointer",
                 }}
+                alt="btn"
                 onClick={() => navigate(item.path)}
-              >
-                {item.label}
-              </Button>
+              />
             ))}
+          </Box>
+
+          <Box sx={{ display: { xs: "none", lg: "block" } }}>
+            <Button
+              variant="contained"
+              onClick={() => navigate("/resume-list")}
+              sx={{
+                background: "white",
+                color: "black",
+                ":hover": {
+                  backgroundColor: "white",
+                },
+                whiteSpace: "nowrap",
+              }}
+            >
+              MY RESUME
+            </Button>
           </Box>
         </Toolbar>
       </AppBar>
@@ -151,7 +170,7 @@ function MainLayout(props) {
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: "block", sm: "none" },
+            display: { xs: "block", lg: "none" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,

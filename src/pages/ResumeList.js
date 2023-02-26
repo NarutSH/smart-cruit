@@ -99,7 +99,7 @@ const ResumeList = () => {
   }, []);
 
   return (
-    <Container maxWidth sx={{ paddingBlock: "20px" }}>
+    <Container maxWidth sx={{ paddingBlock: "50px" }}>
       <Box
         display="flex"
         justifyContent="space-between"
