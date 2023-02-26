@@ -7,7 +7,7 @@ export const toBase64 = (file) =>
   });
 
 export const matchOption = (option, value) => {
-  const findData = option.find((el) => el.value == value);
+  const findData = option.find((el) => el.value === value);
 
   return findData?.label;
 };

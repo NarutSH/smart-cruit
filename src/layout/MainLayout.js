@@ -14,36 +14,50 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Outlet, useNavigate } from "react-router-dom";
+import HomeIcon from "@mui/icons-material/Home";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import PermDataSettingIcon from "@mui/icons-material/PermDataSetting";
+import StorageIcon from "@mui/icons-material/Storage";
+import NetworkPingIcon from "@mui/icons-material/NetworkPing";
+import FileCopyIcon from "@mui/icons-material/FileCopy";
+import ArticleIcon from "@mui/icons-material/Article";
 
 const drawerWidth = 240;
 const menuItems = [
   {
     label: "HOME",
     path: "/",
+    Icon: HomeIcon,
   },
   {
     label: "SM CALENDAR",
     path: "/",
+    Icon: CalendarMonthIcon,
   },
   {
     label: "PIPELINE",
     path: "",
+    Icon: PermDataSettingIcon,
   },
   {
     label: "JOB DATABASE",
     path: "/",
+    Icon: StorageIcon,
   },
   {
     label: "KPI",
     path: "/",
+    Icon: NetworkPingIcon,
   },
   {
     label: "Training Technique",
     path: "/",
+    Icon: FileCopyIcon,
   },
   {
     label: "MY RESUME",
     path: "/resume-list",
+    Icon: ArticleIcon,
   },
 ];
 
@@ -63,9 +77,9 @@ function MainLayout(props) {
       </Typography>
       <Divider />
       <List>
-        {menuItems.map((item) => (
+        {menuItems.map((item, index) => (
           <ListItem
-            key={item}
+            key={index}
             disablePadding
             onClick={() => navigate(item.path)}
           >
@@ -87,7 +101,8 @@ function MainLayout(props) {
       <AppBar
         component="nav"
         sx={{
-          backgroundColor: "rgb(26,88,125)",
+          backgroundColor: "rgba(26,88,125,0)",
+          boxShadow: "none",
         }}
       >
         <Toolbar>
@@ -100,23 +115,24 @@ function MainLayout(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
+          {/* <Typography
             variant="h6"
             component="div"
-            sx={{
-              flexGrow: 1,
-              display: { xs: "none", sm: "block" },
-              cursor: "pointer",
-            }}
+            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
             onClick={() => navigate("/")}
           >
             SMARTCRUIT
-          </Typography>
+          </Typography> */}
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {menuItems.map((item) => (
+            {menuItems.map((item, index) => (
               <Button
-                key={item}
-                sx={{ color: "#fff", marginLeft: "5px" }}
+                key={index}
+                startIcon={<item.Icon />}
+                sx={{
+                  color: "black",
+                  marginLeft: "5px",
+                  backgroundColor: "white",
+                }}
                 onClick={() => navigate(item.path)}
               >
                 {item.label}
@@ -146,7 +162,7 @@ function MainLayout(props) {
         </Drawer>
       </Box>
       <Box component="main" sx={{ width: "100%" }}>
-        <Toolbar />
+        {/* <Toolbar /> */}
         <Outlet />
       </Box>
     </Box>

@@ -1,5 +1,4 @@
-import { Grid, Box } from "@mui/material";
-// import { Box } from "@mui/system";
+import { Grid, Box, Toolbar } from "@mui/material";
 import React from "react";
 import { useForm } from "react-hook-form";
 import VerticalLinearStepper from "../components/VerticalLinearStepper";
@@ -10,6 +9,12 @@ const ResumeForm = () => {
 
   return (
     <Box>
+      <Toolbar
+        sx={{
+          background: "URL(/assets/images/headerimg.png)",
+          height: "100px",
+        }}
+      />
       <Grid container>
         <Grid item xs={12} lg={6}>
           <Box

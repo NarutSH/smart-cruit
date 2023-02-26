@@ -1,17 +1,9 @@
 import React from "react";
-import {
-  Grid,
-  Typography,
-  TextField,
-  Button,
-  Paper,
-  IconButton,
-  Rating,
-} from "@mui/material";
+import { Grid, TextField, Button, IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { defFormValue } from "../data/formValue";
-import { Controller, useFieldArray } from "react-hook-form";
+import { useFieldArray } from "react-hook-form";
 
 const LanguageEl = ({ hookForm }) => {
   const { register, control } = hookForm;

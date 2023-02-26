@@ -111,6 +111,7 @@ const ResumePaper = ({ hookForm }) => {
               watchValue?.contact?.profileImg ??
               "/assets/images/blank-profile.png"
             }
+            alt="profile"
             style={{
               width: "100%",
             }}
