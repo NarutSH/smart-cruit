@@ -1,12 +1,13 @@
-import { Paper, Box, Typography, Grid } from "@mui/material";
+import { Paper, Box, Typography, Grid, Button } from "@mui/material";
 import { format, differenceInYears } from "date-fns";
-import React from "react";
+import React, { useRef } from "react";
 import {
   optionAvailability,
   optionCarLicense,
   optionMarital,
 } from "../data/data";
 import { matchOption } from "../services/global-function";
+import { useReactToPrint } from "react-to-print";
 
 const RowText = ({ label, content, prefix = ":" }) => {
   return (
@@ -26,6 +27,7 @@ const RowText = ({ label, content, prefix = ":" }) => {
 const ResumePaper = ({ hookForm }) => {
   const { watch } = hookForm;
   const watchValue = watch();
+  const componentRef = useRef();
 
   const styles = {
     banner: {
@@ -35,6 +37,10 @@ const ResumePaper = ({ hookForm }) => {
       color: "white",
     },
   };
+
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
 
   const displayHeader = (
     <Box display="flex" justifyContent="space-between" alignItems="center">
@@ -208,13 +214,23 @@ const ResumePaper = ({ hookForm }) => {
   );
 
   return (
-    <Paper className="a4">
-      {displayHeader}
-      {displayContact}
-      {!!watchValue?.career && displayCareerHighlight}
-      {!!watchValue?.education && displayEducation}
-      {!!watchValue?.experiences && displayExperience}
-    </Paper>
+    <Box>
+      <Paper sx={{ minHeight: "29.7cm" }}>
+        <Box component="page" className="" ref={componentRef}>
+          <Box sx={{ padding: "20px" }}>
+            {displayHeader}
+            {displayContact}
+            {!!watchValue?.career && displayCareerHighlight}
+            {!!watchValue?.education && displayEducation}
+            {!!watchValue?.experiences && displayExperience}
+          </Box>
+        </Box>
+      </Paper>
+
+      <Button sx={{ my: 2 }} onClick={handlePrint}>
+        Print
+      </Button>
+    </Box>
   );
 };
 
