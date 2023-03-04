@@ -66,6 +66,7 @@ export const formValue = {
   about: {
     about: "",
   },
+  main_language: "",
   language: [
     // {
     //   languageName: "",

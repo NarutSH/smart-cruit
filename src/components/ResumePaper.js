@@ -1,21 +1,22 @@
-import { Paper, Box, Typography, Grid, Button } from "@mui/material";
+import { Paper, Box, Typography, Grid, Button, Stack } from "@mui/material";
 import { format, differenceInYears } from "date-fns";
 import React, { useRef } from "react";
 import {
   optionAvailability,
   optionCarLicense,
+  optionLanguages,
   optionMarital,
 } from "../data/data";
 import { matchOption } from "../services/global-function";
 import { useReactToPrint } from "react-to-print";
 
-const RowText = ({ label, content, prefix = ":" }) => {
+const RowText = ({ label, content, prefix = ":", ratio = [6, 6] }) => {
   return (
     <Grid container spacing={2}>
-      <Grid item xs={6}>
+      <Grid item xs={ratio[0]}>
         <Typography variant="caption">{label}</Typography>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={ratio[1]}>
         <Typography variant="caption" whiteSpace="nowrap">
           {prefix} {content}
         </Typography>
@@ -102,11 +103,20 @@ const ResumePaper = ({ hookForm }) => {
             </Grid>
             <Grid item xs={12}>
               <RowText
+                ratio={[3, 9]}
                 label="Language"
                 prefix=""
-                content={watchValue?.language?.map((el) => {
-                  return <Box>: {el.languageName}</Box>;
-                })}
+                content={
+                  <Box>
+                    <Box>
+                      : {matchOption(optionLanguages, watch("main_language"))}
+                    </Box>
+                    {!!watchValue?.language?.length &&
+                      watchValue?.language?.map((el) => {
+                        return <Box>: {el.languageName}</Box>;
+                      })}
+                  </Box>
+                }
               />
             </Grid>
           </Grid>
@@ -215,7 +225,7 @@ const ResumePaper = ({ hookForm }) => {
 
   return (
     <Box>
-      <Paper sx={{ minHeight: "29.7cm" }}>
+      <Paper elevation={12} sx={{ minHeight: "29.7cm" }}>
         <Box component="page" className="" ref={componentRef}>
           <Box sx={{ padding: "20px" }}>
             {displayHeader}
@@ -227,9 +237,12 @@ const ResumePaper = ({ hookForm }) => {
         </Box>
       </Paper>
 
-      <Button sx={{ my: 2 }} onClick={handlePrint}>
-        Print
-      </Button>
+      <Stack direction="row" sx={{ my: 2 }} spacing={2}>
+        <Button onClick={handlePrint} variant="contained">
+          Print
+        </Button>
+        <Button variant="contained">SmartBox</Button>
+      </Stack>
     </Box>
   );
 };

@@ -1,9 +1,19 @@
 import React from "react";
-import { Grid, TextField, Button, IconButton } from "@mui/material";
+import {
+  Grid,
+  TextField,
+  Button,
+  IconButton,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { defFormValue } from "../data/formValue";
-import { useFieldArray } from "react-hook-form";
+import { Controller, useFieldArray } from "react-hook-form";
+import { optionLanguages } from "../../data/data";
 
 const LanguageEl = ({ hookForm }) => {
   const { register, control } = hookForm;
@@ -20,15 +30,38 @@ const LanguageEl = ({ hookForm }) => {
 
   return (
     <React.Fragment>
-      <Grid container>
+      <Grid container spacing={2} my={1}>
+        <Grid item xs={6}>
+          <Controller
+            name="main_language"
+            control={control}
+            render={({ field }) => {
+              return (
+                <FormControl fullWidth>
+                  <InputLabel id="main-language">ภาษา</InputLabel>
+                  <Select
+                    labelId="main-language"
+                    id="main-language-select"
+                    label="ภาษา"
+                    {...field}
+                  >
+                    {optionLanguages.map((el) => {
+                      return <MenuItem value={el.value}>{el.label}</MenuItem>;
+                    })}
+                  </Select>
+                </FormControl>
+              );
+            }}
+          />
+        </Grid>
         {fields.map((el, index) => {
           return (
             <Grid item xs={6}>
-              <Grid container spacing={3} my={1} key={el.id}>
+              <Grid container spacing={3} key={el.id}>
                 <Grid item xs={10}>
                   <TextField
                     required
-                    label={`ภาษาที่ ${index + 1}`}
+                    label={`ภาษาอื่น ${index + 1}`}
                     fullWidth
                     style={styles.input}
                     {...register(`language.${index}.languageName`)}

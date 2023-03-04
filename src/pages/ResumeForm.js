@@ -16,11 +16,11 @@ const ResumeForm = () => {
         }}
       />
       <Container maxWidth="lg">
-        <Grid container spacing={2}>
+        <Grid container spacing={2} my={3}>
           <Grid item xs={12} lg={6}>
             <Box
               sx={{
-                maxHeight: "100vh",
+                minHeight: "100vh",
                 overflowY: "auto",
               }}
             >

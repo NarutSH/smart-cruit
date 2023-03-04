@@ -7,23 +7,27 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { Controller } from "react-hook-form";
 import { optionAvailability } from "../../data/data";
+import { EditorState } from "draft-js";
+import { Editor } from "react-draft-wysiwyg";
 
 const CareerHighlight = ({ hookForm }) => {
+  const [editorState, setEditorState] = useState(() =>
+    EditorState.createEmpty()
+  );
   const { register, control } = hookForm;
 
   return (
     <Box>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <TextField
-            variant="outlined"
-            {...register("career.careerHighlight")}
-            multiline
-            minRows={5}
-            fullWidth
+          <Editor
+            editorState={editorState}
+            onEditorStateChange={setEditorState}
+            wrapperClassName="wrapper-class"
+            editorClassName="editor-class"
           />
         </Grid>
         <Grid item xs={12} md={6}>
